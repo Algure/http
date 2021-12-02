@@ -74,6 +74,11 @@ class MultipartRequest extends BaseRequest {
 
     return length + '--'.length + _boundaryLength + '--\r\n'.length;
   }
+  
+  void setContentHeader(){
+    final boundary = _boundaryString();
+    headers['content-type'] = 'multipart/form-data; boundary=$boundary';
+  }
 
   @override
   set contentLength(int? value) {
